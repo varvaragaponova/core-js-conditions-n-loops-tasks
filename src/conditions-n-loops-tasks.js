@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -60,8 +70,25 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  let value;
+  if (queen.x === king.x || queen.y === king.y) {
+    value = true;
+  } else if (queen.x === queen.y && king.x === king.y) {
+    value = true;
+  } else {
+    for (let i = 0; i < 8; i += 1) {
+      for (let j = 0; j < 8; j += 1) {
+        if (i === king.x || j === king.y) {
+          value = true;
+        } else {
+          value = false;
+        }
+      }
+    }
+  }
+
+  return value;
 }
 
 /**
@@ -82,8 +109,19 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (
+    (a === c || a === b || b === c) &&
+    b !== 0 &&
+    a !== 0 &&
+    c !== 0 &&
+    a < b + c &&
+    b < a + c &&
+    c < a + b
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -119,8 +157,74 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const one = ' one';
+  const two = ' two';
+  const zero = ' zero';
+  const three = ' three';
+  const four = ' four';
+  const five = ' five';
+  const six = ' six';
+  const seven = ' seven';
+  const eight = ' eight';
+  const nine = ' nine';
+  const point = ' point';
+  const minus = ' minus';
+
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '1':
+        result += one;
+        break;
+      case '2':
+        result += two;
+        break;
+      case '3':
+        result += three;
+        break;
+      case '4':
+        result += four;
+        break;
+      case '5':
+        result += five;
+        break;
+      case '6':
+        result += six;
+        break;
+      case '7':
+        result += seven;
+        break;
+      case '8':
+        result += eight;
+        break;
+      case '9':
+        result += nine;
+        break;
+      case '0':
+        result += zero;
+        break;
+      case '-':
+        result += minus;
+        break;
+      case '.':
+        result += point;
+        break;
+      case ',':
+        result += point;
+        break;
+      default:
+        result += '';
+    }
+  }
+
+  let resultStr = '';
+  for (let j = 1; j < result.length; j += 1) {
+    resultStr += result[j];
+  }
+
+  return resultStr;
 }
 
 /**
@@ -135,8 +239,15 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let strReverse = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    strReverse += str[i];
+  }
+  if (strReverse === str) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -172,8 +283,21 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const numToStr = `${num}`;
+  const digitToStr = `${digit}`;
+  let result;
+
+  for (let i = 0; i < numToStr.length; i += 1) {
+    if (numToStr[i] === digitToStr) {
+      result = true;
+      break;
+    } else {
+      result = false;
+    }
+  }
+
+  return result;
 }
 
 /**
