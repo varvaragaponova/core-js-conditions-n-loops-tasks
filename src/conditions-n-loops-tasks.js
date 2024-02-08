@@ -138,8 +138,49 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const one = 'I';
+  const two = 'II';
+  const three = 'III';
+  const four = 'IV';
+  const five = 'V';
+  const six = 'VI';
+  const seven = 'VII';
+  const eight = 'VIII';
+  const nine = 'IX';
+  const ten = 'X';
+
+  let result = '';
+
+  if (num === 1) return one;
+  if (num === 2) return two;
+  if (num === 3) return three;
+  if (num === 4) return four;
+  if (num === 5) return five;
+  if (num === 6) return six;
+  if (num === 7) return seven;
+  if (num === 8) return eight;
+  if (num === 9) return nine;
+  if (num === 10) return ten;
+
+  const number = String(num);
+  if (num > 10) {
+    for (let i = 0; i < number[0]; i += 1) {
+      result += ten;
+    }
+
+    if (number[1] === '1') result += one;
+    if (number[1] === '2') result += two;
+    if (number[1] === '3') result += three;
+    if (number[1] === '4') result += four;
+    if (number[1] === '5') result += five;
+    if (number[1] === '6') result += six;
+    if (number[1] === '7') result += seven;
+    if (number[1] === '8') result += eight;
+    if (number[1] === '9') result += nine;
+  }
+
+  return result;
 }
 
 /**
@@ -264,8 +305,17 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let result;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      result = i;
+      break;
+    } else {
+      result = -1;
+    }
+  }
+  return result;
 }
 
 /**
@@ -313,8 +363,30 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  if (!arr.length || arr.length === 2) return -1;
+
+  let leftSum = 0;
+  let skippedBlock = -1;
+
+  for (let i = 0; i < arr.length; i += 1) {
+    let sum = 0;
+    let idx = i + 2;
+
+    while (idx < arr.length) {
+      sum += arr[idx];
+      idx += 1;
+    }
+
+    leftSum += arr[i];
+
+    if (sum === leftSum) {
+      skippedBlock = i + 1;
+      break;
+    }
+  }
+
+  return skippedBlock;
 }
 
 /**
