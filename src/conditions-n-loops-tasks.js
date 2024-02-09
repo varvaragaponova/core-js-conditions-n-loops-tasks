@@ -450,18 +450,19 @@ function rotateMatrix(/* matrix */) {
  */
 function sortByAsc(arr) {
   let current;
-  for (let i = 1; i < arr.length; i += 1) {
-    current = arr[i];
+  const copy = arr;
+  for (let i = 1; i < copy.length; i += 1) {
+    current = copy[i];
     let j = i - 1;
 
-    while (j >= 0 && arr[j] > current) {
-      arr[j + 1] = arr[j];
+    while (j >= 0 && copy[j] > current) {
+      copy[j + 1] = copy[j];
       j -= 1;
     }
-    arr[j + 1] = current;
+    copy[j + 1] = current;
   }
 
-  return arr;
+  return copy;
 }
 
 /**
